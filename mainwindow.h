@@ -39,11 +39,13 @@ public:
 
     QImage imageCenter(QImage qimage,QLabel *qLabel);
     Mat mat_to_samples(Mat &image);
+    //背景替换的通用函数
+    QImage BackroundReplace(Mat &img,int R,int G,int B);
+    //判断字符串是否是数字
+    bool isNum(const QString &str);
 
 private slots:
     void on_action_triggered();
-
-    void on_radioButton_4_toggled(bool checked);
 
     void on_radioButton_toggled(bool checked);
 
@@ -51,15 +53,26 @@ private slots:
 
     void on_radioButton_3_toggled(bool checked);
 
-    void on_lineEdit_textEdited(const QString &arg1);
-
     void on_pushButton_clicked();
 
     void on_pushButton_2_clicked();
 
+
+    void on_radioButton_4_toggled(bool checked);
+
+    void on_lineEdit_textEdited(const QString &arg1);
+
+    void on_lineEdit_2_textEdited(const QString &arg1);
+
+    void on_lineEdit_3_textEdited(const QString &arg1);
+
+    void on_checkBox_toggled(bool checked);
+
+    void on_checkBox_2_toggled(bool checked);
+
 private:
     Ui::MainWindow *ui;
-    Mat srcImage;//记录原图的变量，cv命名空间下的Mat类型
+    Mat srcImage,srcImage1;//记录原图的变量,美化后的变量，cv命名空间下的Mat类型
     //auto result;
     //qint16 pic_cun;//图片尺寸
     QString back_color;//背景颜色
@@ -67,6 +80,10 @@ private:
     //qint32 pic_size_after;//压缩图片至
     QImage displayImg;
     //QPixmap disimg;
+    //自定义的BGR
+    int R,G,B;
+    bool isNoisy;
+    bool isBeauty;
 
 };
 #endif // MAINWINDOW_H
